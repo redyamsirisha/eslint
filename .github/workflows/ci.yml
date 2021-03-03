@@ -70,13 +70,13 @@ on:
       - master
 
 jobs:
-#   test:
-#     name: Jest
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - run: yarn
-#       - run: yarn test
+  test:
+    name: Jest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn
+      - run: yarn test
 
   lint:
     name: Eslint
@@ -86,13 +86,14 @@ jobs:
       - run: yarn
       - run: yarn lint
 
-#   notify:
-#       Name: Slack
-#       needs: [test, lint] # We only check after the others jobs have run
-#       if: always() # Always runs even if one of the builds fails
-#       runs-on: ubuntu-latest
-#       steps:
-#        - uses: iRoachie/slack-github-actions@v2.3.0
-#          env:
-#            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  notify:
+#     Name: Slack
+    name: 'Slack'
+    needs: [test, lint] # We only check after the others jobs have run
+    if: always() # Always runs even if one of the builds fails
+    runs-on: ubuntu-latest
+    steps:
+       - uses: iRoachie/slack-github-actions@v2.3.0
+         env:
+           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
