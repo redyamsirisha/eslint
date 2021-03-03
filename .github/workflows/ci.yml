@@ -89,11 +89,13 @@ jobs:
   notify:
 #     Name: Slack
     name: 'Slack'
+    
     needs: [test, lint] # We only check after the others jobs have run
     if: always() # Always runs even if one of the builds fails
     runs-on: ubuntu-latest
     steps:
        - uses: iRoachie/slack-github-actions@v2.3.0
          env:
+           channel: '#test'
            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
