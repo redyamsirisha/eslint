@@ -70,13 +70,13 @@ on:
       - master
 
 jobs:
-  test:
-    name: Jest
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: yarn
-      - run: yarn test
+#   test:
+#     name: Jest
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - run: yarn
+#       - run: yarn test
 
   lint:
     name: Eslint
